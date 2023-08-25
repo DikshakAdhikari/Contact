@@ -2,11 +2,13 @@ import { log } from "console";
 import { ChangeEvent, FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "../store/contactSlice";
+import { useNavigate } from "react-router-dom";
 
 export const CreateContact: FC = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const dispatch = useDispatch();
+  const navigate= useNavigate()
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.name === "firstName") {
@@ -52,8 +54,11 @@ export const CreateContact: FC = () => {
 
         <button
           className="bg-black p-2 text-white m-4"
-          onClick={() =>
+          onClick={() =>{
             dispatch(addContact({ name: firstName, email: lastName }))
+            alert('Contact created successfully');
+            navigate('/contact');
+          }
           }
         >
           Create Contact
