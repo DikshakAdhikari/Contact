@@ -1,7 +1,9 @@
 import React, {ChangeEvent, FC, useState} from 'react'
 import { useAppSelector } from '../store/store'
 import { IC } from './interface';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateContact } from '../store/contactSlice';
 
 
 export const EditContact = ()=> {
@@ -9,6 +11,7 @@ export const EditContact = ()=> {
     const {id} = params;
    //console.log(id);
    const contact= useAppSelector(state=> state.contacts);
+   const dispatch= useDispatch();
 //    console.log(typeof contact[2].id);
 //    console.log(typeof Number(id));
    
@@ -21,7 +24,7 @@ export const EditContact = ()=> {
    }
 
   // console.log(currentContact);
-   
+   const navigate= useNavigate();
 
     const contacts= useAppSelector(state => state.contacts);
     const [name, setName]= useState<string>(currentContact.name)
@@ -70,6 +73,15 @@ export const EditContact = ()=> {
 
         <button
           className="bg-black p-2 text-white m-4"
+          
+          onClick={()=> {
+            const obj={
+               name:name, email:lastName
+              }
+            dispatch(updateContact({id:currentContact.id, updatedData:obj}))
+            alert('Contact updated successfully')
+            navigate('/contact')
+          }}
         >
           Save Editted Contact
         </button>

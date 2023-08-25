@@ -25,10 +25,19 @@ export const ContactSlice= createSlice({
                 email:action.payload.email
 
             });
-        }
+        },
+        updateContact: (state, action: PayloadAction<{ id: number; updatedData: Partial<Contact> }>) => {
+            const { id, updatedData } = action.payload;
+            const contactIndex = state.contacts.findIndex(contact => contact.id === id);
+      
+            if (contactIndex !== -1) {
+              state.contacts[contactIndex] = { ...state.contacts[contactIndex], ...updatedData };
+            }
+          },
 
     }
 })
 
 export default ContactSlice.reducer;
 export const {addContact} = ContactSlice.actions;
+export const { updateContact } = ContactSlice.actions;
