@@ -23,7 +23,7 @@ export const EditContact = ()=> {
     }
    }
 
-  // console.log(currentContact);
+   console.log(currentContact);
    const navigate= useNavigate();
 
     const contacts= useAppSelector(state => state.contacts);
