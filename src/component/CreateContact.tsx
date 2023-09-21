@@ -19,7 +19,7 @@ export const CreateContact: FC = () => {
   };
 
   //   console.log(firstName);
-  //   console.log(lastName);
+     console.log(lastName);
 
   return (
     <>
