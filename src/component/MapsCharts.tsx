@@ -7,7 +7,7 @@ export const MapsCharts : FC = ()=> {
     
     return (
         <div>
-            dfddfd
+           
         </div>
     )
 }
